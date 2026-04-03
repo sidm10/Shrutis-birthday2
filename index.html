@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .handwritten {
+            font-family: 'Pacifico', cursive;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        /* Cake Animations */
+        .flame {
+            width: 15px;
+            height: 25px;
+            background: linear-gradient(to bottom, #ffcc00, #ff6600);
+            border-radius: 50% 50% 20% 20%;
+            margin: 0 auto;
+            animation: flicker 0.6s infinite alternate;
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+        }
+        .flame.blown-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); }
+            100% { transform: scale(1.1) rotate(2deg); opacity: 0.9; }
+        }
+        .candle {
+            width: 12px;
+            height: 45px;
+            background: repeating-linear-gradient(45deg, #ff99bb, #ff99bb 5px, #fff 5px, #fff 10px);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+        }
+        .ig-gradient {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 min-h-screen text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/60 backdrop-blur-md border-b border-white/30">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <span class="handwritten text-2xl text-pink-500">Happy B-Day!</span>
+            <div class="hidden md:flex space-x-6 text-sm font-bold text-slate-600">
+                <a href="#cake" class="hover:text-pink-500">Cake</a>
+                <a href="#memories" class="hover:text-pink-500">Memories</a>
+                <a href="#quiz" class="hover:text-pink-500">Quiz</a>
+                <a href="#messages" class="hover:text-pink-500">Guestbook</a>
+                <a href="#poster" class="hover:text-pink-500">Poster Tool</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-16 px-4 text-center">
+        <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 mb-4 handwritten">
+            Happy Birthday, [Friend's Name]!
+        </h1>
+        <p class="text-lg text-slate-600 max-w-md mx-auto">
+            Today is all about you! Scroll down to celebrate your special day.
+        </p>
+    </header>
+
+    <!-- Interactive Cake Section -->
+    <section id="cake" class="py-20 px-4">
+        <div class="max-w-xl mx-auto text-center glass-card rounded-3xl p-8 shadow-xl">
+            <h2 class="text-3xl font-bold mb-8 text-purple-700">Make a Wish! 🎂</h2>
+            <p class="mb-8 text-slate-500">Tap the candles to blow them out!</p>
+            
+            <div class="relative flex justify-center items-end h-64 mb-8">
+                <div class="relative w-64">
+                    <div class="absolute -top-16 left-0 right-0 flex justify-around px-4">
+                        <div class="flex flex-col items-center">
+                            <div id="flame-1" class="flame" onclick="blowCandle(1)"></div>
+                            <div class="candle"></div>
+                        </div>
+                        <div class="flex flex-col items-center pt-2">
+                            <div id="flame-2" class="flame" onclick="blowCandle(2)"></div>
+                            <div class="candle"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div id="flame-3" class="flame" onclick="blowCandle(3)"></div>
+                            <div class="candle"></div>
+                        </div>
+                    </div>
+                    <div class="w-full h-32 bg-white rounded-t-xl shadow-inner border-b-8 border-pink-200">
+                        <div class="w-full h-8 bg-pink-400 rounded-t-xl"></div>
+                        <div class="flex justify-around mt-4">
+                            <div class="w-4 h-4 bg-yellow-300 rounded-full"></div>
+                            <div class="w-4 h-4 bg-pink-300 rounded-full"></div>
+                            <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                        </div>
+                    </div>
+                    <div class="w-full h-12 bg-pink-100 rounded-b-xl shadow-lg"></div>
+                </div>
+            </div>
+            
+            <div id="wish-message" class="hidden text-2xl font-bold text-pink-600 animate-bounce">
+                ✨ Your wish is coming true! ✨
+            </div>
+            <button onclick="resetCandles()" class="mt-4 text-sm text-slate-400 underline cursor-pointer">Relight candles</button>
+        </div>
+    </section>
+
+    <!-- Memory Lane Section -->
+    <section id="memories" class="py-20 bg-white/40">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-slate-800">Memory Lane 📸</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg aspect-square bg-slate-200">
+                    <img src="https://images.unsplash.com/photo-1513151233558-d860c53bd81d?auto=format&fit=crop&q=80&w=400" alt="Memory" class="w-full h-full object-cover transition transform group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <p class="text-white font-medium">That crazy summer trip! 🏖️</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg aspect-square bg-slate-200">
+                    <img src="https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=400" alt="Memory" class="w-full h-full object-cover transition transform group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <p class="text-white font-medium">Late night coding... ☕</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg aspect-square bg-slate-200">
+                    <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=400" alt="Memory" class="w-full h-full object-cover transition transform group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <p class="text-white font-medium">Just being besties! ✨</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="py-20 px-4">
+        <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 shadow-2xl">
+            <h2 class="text-3xl font-bold text-center mb-4 text-blue-700">The "[Friend's Name]" Quiz 🧠</h2>
+            <p class="text-center text-slate-500 mb-8">Score 10/10 to unlock the surprise gift!</p>
+            
+            <div id="quiz-container">
+                <div id="question-box" class="space-y-6">
+                    <div class="text-sm font-bold text-slate-400 uppercase tracking-widest">Question <span id="q-num">1</span> of 10</div>
+                    <h3 id="q-text" class="text-xl font-bold text-slate-800">...</h3>
+                    <div id="options-box" class="grid grid-cols-1 gap-3"></div>
+                </div>
+
+                <div id="result-box" class="hidden text-center space-y-6">
+                    <div class="text-6xl" id="result-emoji">🎉</div>
+                    <h3 class="text-2xl font-bold">You scored <span id="final-score">0</span>/10!</h3>
+                    <p id="result-msg" class="text-slate-600"></p>
+                    <div id="surprise-gift" class="hidden p-6 bg-yellow-100 border-2 border-dashed border-yellow-400 rounded-xl">
+                        <h4 class="text-xl font-bold text-yellow-700 mb-2">🎁 SURPRISE! 🎁</h4>
+                        <p class="text-yellow-800">You really know your friend! Your gift is: <br><strong>[Insert Gift Here]</strong></p>
+                    </div>
+                    <button onclick="startQuiz()" class="px-6 py-2 bg-slate-200 rounded-full font-bold hover:bg-slate-300 transition">Try Again</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guestbook Section -->
+    <section id="messages" class="py-20 bg-white/40">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-slate-800">Birthday Wishes ✍️</h2>
+            
+            <!-- Message Form -->
+            <div class="glass-card p-6 rounded-2xl mb-12 shadow-lg">
+                <h3 class="text-xl font-bold mb-4">Leave a message</h3>
+                <div class="space-y-4">
+                    <input type="text" id="guest-name" placeholder="Your Name" class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                    <textarea id="guest-msg" placeholder="Write something sweet..." rows="3" class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+                    <button id="send-btn" onclick="addMessage()" class="w-full py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-xl transition flex justify-center items-center">
+                        <span id="btn-text">Send Wish 💌</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Message List -->
+            <div id="message-list" class="space-y-6">
+                <div class="text-center py-10 text-slate-400">Loading wishes...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Poster QR Section -->
+    <section id="poster" class="py-20 px-4">
+        <div class="max-w-xl mx-auto glass-card rounded-3xl p-8 shadow-xl text-center">
+            <h2 class="text-3xl font-bold mb-4 text-slate-800">Poster Tool 🎞️</h2>
+            <p class="text-slate-600 mb-8 text-sm">Once you host this page (e.g. on GitHub Pages), paste the URL below to generate your QR code for the poster!</p>
+            
+            <div class="flex flex-col items-center space-y-6">
+                <input type="text" id="url-input" placeholder="https://your-birthday-site.com" 
+                    class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    oninput="generateQR()">
+                
+                <div id="qr-display" class="bg-white p-4 rounded-xl shadow-inner min-h-[200px] flex items-center justify-center">
+                    <p class="text-slate-300 italic">Enter a URL to see the QR code</p>
+                </div>
+
+                <div class="text-xs text-slate-400">
+                    Tip: Right-click the QR code and select "Save image as..." to download it for printing.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Follow the Star Section -->
+    <section id="follow" class="py-20 px-4 text-center">
+        <div class="max-w-xl mx-auto glass-card rounded-[3rem] p-10 shadow-2xl border-2 border-white">
+            <h2 class="text-3xl font-bold mb-6 text-slate-800">Follow the Star 🌟</h2>
+            <p class="text-slate-600 mb-8">Stay updated with [Friend's Name]'s latest adventures!</p>
+            
+            <a href="https://instagram.com/[your_friend_username]" target="_blank" class="ig-gradient inline-flex items-center px-8 py-4 rounded-full text-white font-bold text-lg shadow-xl hover:scale-105 transition transform">
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                Follow on Instagram
+            </a>
+        </div>
+    </section>
+
+    <!-- Final Wishes -->
+    <footer class="py-20 px-4 text-center">
+        <div class="max-w-2xl mx-auto bg-gradient-to-r from-pink-500 to-purple-600 p-12 rounded-[3rem] shadow-2xl text-white">
+            <h2 class="handwritten text-4xl mb-6">Best Wishes Always</h2>
+            <p class="text-lg opacity-90 leading-relaxed">
+                May your year be filled with laughter, success, and endless adventures. Thank you for being such an incredible friend!
+            </p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Configuration
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'birthday-app-id';
+
+        let user = null;
+
+        // Initialize Authentication
+        const initAuth = async () => {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+        };
+
+        onAuthStateChanged(auth, (u) => {
+            user = u;
+            if (user) {
+                setupGuestbook();
+            }
+        });
+
+        initAuth();
+
+        // --- Guestbook Logic with Firebase ---
+        function setupGuestbook() {
+            const messagesRef = collection(db, 'artifacts', appId, 'public', 'data', 'messages');
+            
+            onSnapshot(messagesRef, (snapshot) => {
+                const list = document.getElementById('message-list');
+                list.innerHTML = '';
+                
+                const docs = snapshot.docs.sort((a, b) => {
+                    const timeA = a.data().timestamp?.toMillis() || 0;
+                    const timeB = b.data().timestamp?.toMillis() || 0;
+                    return timeB - timeA;
+                });
+
+                if (docs.length === 0) {
+                    list.innerHTML = '<div class="text-center py-10 text-slate-400">No wishes yet. Be the first! ✨</div>';
+                    return;
+                }
+
+                docs.forEach(doc => {
+                    const data = doc.data();
+                    const card = document.createElement('div');
+                    card.className = "bg-white p-6 rounded-2xl shadow-md border-l-4 border-pink-400 animate-fade-in";
+                    card.innerHTML = `
+                        <p class="text-slate-700 italic mb-2">"${escapeHtml(data.message)}"</p>
+                        <p class="text-sm font-bold text-pink-600">— ${escapeHtml(data.name)}</p>
+                    `;
+                    list.appendChild(card);
+                });
+            }, (error) => {
+                console.error("Firestore Error:", error);
+            });
+        }
+
+        window.addMessage = async () => {
+            if (!user) return;
+            const name = document.getElementById('guest-name').value.trim();
+            const msg = document.getElementById('guest-msg').value.trim();
+            const btn = document.getElementById('send-btn');
+            const btnText = document.getElementById('btn-text');
+            if (!name || !msg) { alert("Please fill in both name and message!"); return; }
+
+            try {
+                btn.disabled = true;
+                btnText.innerText = "Sending...";
+                const messagesRef = collection(db, 'artifacts', appId, 'public', 'data', 'messages');
+                await addDoc(messagesRef, { name, message: msg, timestamp: serverTimestamp(), uid: user.uid });
+                document.getElementById('guest-name').value = '';
+                document.getElementById('guest-msg').value = '';
+                confetti({ particleCount: 30, spread: 50, origin: { y: 0.9 } });
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            } finally {
+                btn.disabled = false;
+                btnText.innerText = "Send Wish 💌";
+            }
+        };
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // --- Poster QR Generator Logic ---
+        window.generateQR = () => {
+            const url = document.getElementById('url-input').value.trim();
+            const display = document.getElementById('qr-display');
+            if (url) {
+                const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(url)}`;
+                display.innerHTML = `<img src="${qrUrl}" alt="QR Code" class="rounded-lg shadow-md animate-fade-in">`;
+            } else {
+                display.innerHTML = `<p class="text-slate-300 italic">Enter a URL to see the QR code</p>`;
+            }
+        };
+
+        // --- Cake & Quiz Logic ---
+        let candlesBlown = 0;
+        window.blowCandle = (id) => {
+            const flame = document.getElementById(`flame-${id}`);
+            if (!flame.classList.contains('blown-out')) {
+                flame.classList.add('blown-out');
+                candlesBlown++;
+                if (candlesBlown === 3) {
+                    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                    document.getElementById('wish-message').classList.remove('hidden');
+                }
+            }
+        };
+
+        window.resetCandles = () => {
+            candlesBlown = 0;
+            for (let i = 1; i <= 3; i++) document.getElementById(`flame-${i}`).classList.remove('blown-out');
+            document.getElementById('wish-message').classList.add('hidden');
+        };
+
+        const quizData = [
+            { q: "What is their favorite color?", o: ["Blue", "Red", "Pink", "Green"], a: 2 },
+            { q: "What is their go-to snack?", o: ["Chips", "Chocolate", "Fruit", "Pizza"], a: 0 },
+            { q: "What's their favorite season?", o: ["Summer", "Winter", "Spring", "Autumn"], a: 0 },
+            { q: "Coffee or Tea?", o: ["Coffee", "Tea", "Both", "Neither"], a: 1 },
+            { q: "What is their dream travel destination?", o: ["Paris", "Tokyo", "New York", "Bali"], a: 1 },
+            { q: "Are they a night owl or early bird?", o: ["Night Owl", "Early Bird", "Both", "Just Tired"], a: 0 },
+            { q: "What's their favorite movie genre?", o: ["Horror", "Comedy", "Sci-Fi", "Romance"], a: 1 },
+            { q: "Which pet do they prefer?", o: ["Dogs", "Cats", "Birds", "Capybaras"], a: 0 },
+            { q: "What is their hidden talent?", o: ["Singing", "Cooking", "Gaming", "Sleeping"], a: 3 },
+            { q: "Last one: How awesome are they?", o: ["Very", "Extremely", "Superb", "All of the above"], a: 3 }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        window.startQuiz = () => {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('question-box').classList.remove('hidden');
+            document.getElementById('result-box').classList.add('hidden');
+            document.getElementById('surprise-gift').classList.add('hidden');
+            showQuestion();
+        };
+
+        const showQuestion = () => {
+            const q = quizData[currentQuestion];
+            document.getElementById('q-num').innerText = currentQuestion + 1;
+            document.getElementById('q-text').innerText = q.q;
+            const optionsBox = document.getElementById('options-box');
+            optionsBox.innerHTML = '';
+            q.o.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border-2 border-slate-100 hover:border-pink-300 hover:bg-pink-50 transition font-medium text-slate-700";
+                btn.innerText = opt;
+                btn.onclick = () => handleAnswer(idx);
+                optionsBox.appendChild(btn);
+            });
+        };
+
+        const handleAnswer = (idx) => {
+            if (idx === quizData[currentQuestion].a) score++;
+            currentQuestion++;
+            if (currentQuestion < quizData.length) showQuestion(); else showResults();
+        };
+
+        const showResults = () => {
+            document.getElementById('question-box').classList.add('hidden');
+            document.getElementById('result-box').classList.remove('hidden');
+            document.getElementById('final-score').innerText = score;
+            if (score === 10) {
+                document.getElementById('surprise-gift').classList.remove('hidden');
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.8 } });
+            }
+        };
+
+        window.startQuiz();
+    </script>
+</body>
+</html>
