@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <title>Happy Birthday Shruti! ✨</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -16,9 +16,9 @@
             font-family: 'Pacifico', cursive;
         }
         .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
         /* Cake Animations */
         .flame {
@@ -53,51 +53,63 @@
             animation: fadeIn 0.5s ease-out forwards;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        .shimmer {
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 min-h-screen text-slate-800">
+<body class="bg-gradient-to-br from-rose-100 via-purple-50 to-indigo-100 min-h-screen text-slate-800">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-white/60 backdrop-blur-md border-b border-white/30">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-            <span class="handwritten text-2xl text-pink-500">Happy B-Day!</span>
-            <div class="hidden md:flex space-x-6 text-sm font-bold text-slate-600">
-                <a href="#cake" class="hover:text-pink-500">Cake</a>
-                <a href="#memories" class="hover:text-pink-500">Memories</a>
-                <a href="#quiz" class="hover:text-pink-500">Quiz</a>
-                <a href="#messages" class="hover:text-pink-500">Guestbook</a>
-                <a href="#poster" class="hover:text-pink-500">Poster Tool</a>
+    <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-lg border-b border-white/40">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="handwritten text-2xl text-rose-500">Shruti's Day ✨</span>
+            <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 uppercase tracking-wider">
+                <a href="#cake" class="hover:text-rose-500 transition">Cake</a>
+                <a href="#memories" class="hover:text-rose-500 transition">Memories</a>
+                <a href="#quiz" class="hover:text-rose-500 transition">Quiz</a>
+                <a href="#hunt" class="hover:text-rose-500 transition">Game</a>
+                <a href="#messages" class="hover:text-rose-500 transition">Wishes</a>
+                <a href="#follow" class="hover:text-rose-500 transition">Follow</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="pt-32 pb-16 px-4 text-center">
-        <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 mb-4 handwritten">
-            Happy Birthday, [Friend's Name]!
+    <header class="pt-40 pb-20 px-4 text-center">
+        <div class="inline-block px-4 py-1 rounded-full bg-rose-100 text-rose-600 text-xs font-bold mb-4 uppercase tracking-widest">Birthday Celebration</div>
+        <h1 class="text-6xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-purple-500 to-indigo-500 mb-6 handwritten">
+            Happy Birthday, Shruti!
         </h1>
-        <p class="text-lg text-slate-600 max-w-md mx-auto">
-            Today is all about you! Scroll down to celebrate your special day.
+        <p class="text-xl text-slate-600 max-w-xl mx-auto leading-relaxed">
+            To the girl who brings sunshine everywhere she goes. We love you! ✨
         </p>
     </header>
 
     <!-- Interactive Cake Section -->
-    <section id="cake" class="py-20 px-4">
-        <div class="max-w-xl mx-auto text-center glass-card rounded-3xl p-8 shadow-xl">
-            <h2 class="text-3xl font-bold mb-8 text-purple-700">Make a Wish! 🎂</h2>
-            <p class="mb-8 text-slate-500">Tap the candles to blow them out!</p>
+    <section id="cake" class="py-24 px-4">
+        <div class="max-w-xl mx-auto text-center glass-card rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 shimmer"></div>
+            <h2 class="text-3xl font-bold mb-4 text-purple-700">Make a Wish, Shruti! 🎂</h2>
+            <p class="mb-12 text-slate-500">Click the candles to blow them out</p>
             
-            <div class="relative flex justify-center items-end h-64 mb-8">
-                <div class="relative w-64">
-                    <div class="absolute -top-16 left-0 right-0 flex justify-around px-4">
+            <div class="relative flex justify-center items-end h-64 mb-10">
+                <div class="relative w-72">
+                    <div class="absolute -top-16 left-0 right-0 flex justify-around px-8">
                         <div class="flex flex-col items-center">
                             <div id="flame-1" class="flame" onclick="blowCandle(1)"></div>
                             <div class="candle"></div>
                         </div>
-                        <div class="flex flex-col items-center pt-2">
+                        <div class="flex flex-col items-center pt-4">
                             <div id="flame-2" class="flame" onclick="blowCandle(2)"></div>
                             <div class="candle"></div>
                         </div>
@@ -106,46 +118,46 @@
                             <div class="candle"></div>
                         </div>
                     </div>
-                    <div class="w-full h-32 bg-white rounded-t-xl shadow-inner border-b-8 border-pink-200">
-                        <div class="w-full h-8 bg-pink-400 rounded-t-xl"></div>
-                        <div class="flex justify-around mt-4">
-                            <div class="w-4 h-4 bg-yellow-300 rounded-full"></div>
-                            <div class="w-4 h-4 bg-pink-300 rounded-full"></div>
-                            <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                    <div class="w-full h-32 bg-white rounded-t-3xl shadow-inner border-b-8 border-rose-100">
+                        <div class="w-full h-10 bg-rose-400 rounded-t-3xl flex items-center justify-center">
+                            <div class="flex space-x-2"><div class="w-2 h-2 bg-white rounded-full opacity-50"></div><div class="w-2 h-2 bg-white rounded-full opacity-50"></div><div class="w-2 h-2 bg-white rounded-full opacity-50"></div></div>
+                        </div>
+                        <div class="flex justify-around mt-6">
+                            <div class="w-5 h-5 bg-yellow-200 rounded-full blur-[1px]"></div>
+                            <div class="w-5 h-5 bg-rose-200 rounded-full blur-[1px]"></div>
+                            <div class="w-5 h-5 bg-purple-200 rounded-full blur-[1px]"></div>
                         </div>
                     </div>
-                    <div class="w-full h-12 bg-pink-100 rounded-b-xl shadow-lg"></div>
+                    <div class="w-full h-16 bg-rose-50 rounded-b-3xl shadow-xl flex items-center justify-center italic text-rose-300 font-bold uppercase">Shruti</div>
                 </div>
             </div>
             
-            <div id="wish-message" class="hidden text-2xl font-bold text-pink-600 animate-bounce">
-                ✨ Your wish is coming true! ✨
-            </div>
-            <button onclick="resetCandles()" class="mt-4 text-sm text-slate-400 underline cursor-pointer">Relight candles</button>
+            <div id="wish-message" class="hidden text-3xl font-bold text-rose-600 animate-bounce handwritten mt-4">✨ Your wish is coming true! ✨</div>
+            <button onclick="resetCandles()" class="mt-6 text-xs text-slate-400 uppercase tracking-widest hover:text-rose-500 transition cursor-pointer">Relight candles</button>
         </div>
     </section>
 
     <!-- Memory Lane Section -->
-    <section id="memories" class="py-20 bg-white/40">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-slate-800">Memory Lane 📸</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg aspect-square bg-slate-200">
-                    <img src="https://images.unsplash.com/photo-1513151233558-d860c53bd81d?auto=format&fit=crop&q=80&w=400" alt="Memory" class="w-full h-full object-cover transition transform group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <p class="text-white font-medium">That crazy summer trip! 🏖️</p>
+    <section id="memories" class="py-24 bg-white/30">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-slate-800">Shruti's Memory Lane 📸</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="group relative overflow-hidden rounded-[2rem] shadow-2xl aspect-square bg-white p-3">
+                    <img src="https://images.unsplash.com/photo-1513151233558-d860c53bd81d?auto=format&fit=crop&q=80&w=600" alt="Memory" class="w-full h-full object-cover rounded-[1.5rem] transition transform group-hover:scale-105">
+                    <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur p-4 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 transform">
+                        <p class="text-slate-800 font-bold text-center">That radiant smile! 😊</p>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg aspect-square bg-slate-200">
-                    <img src="https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=400" alt="Memory" class="w-full h-full object-cover transition transform group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <p class="text-white font-medium">Late night coding... ☕</p>
+                <div class="group relative overflow-hidden rounded-[2rem] shadow-2xl aspect-square bg-white p-3">
+                    <img src="https://images.unsplash.com/photo-1496440737103-cd596325d314?auto=format&fit=crop&q=80&w=600" alt="Memory" class="w-full h-full object-cover rounded-[1.5rem] transition transform group-hover:scale-105">
+                    <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur p-4 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 transform">
+                        <p class="text-slate-800 font-bold text-center">Adventures await... 🗺️</p>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg aspect-square bg-slate-200">
-                    <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=400" alt="Memory" class="w-full h-full object-cover transition transform group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <p class="text-white font-medium">Just being besties! ✨</p>
+                <div class="group relative overflow-hidden rounded-[2rem] shadow-2xl aspect-square bg-white p-3">
+                    <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=600" alt="Memory" class="w-full h-full object-cover rounded-[1.5rem] transition transform group-hover:scale-105">
+                    <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur p-4 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 transform">
+                        <p class="text-slate-800 font-bold text-center">Our favorite moments! ❤️</p>
                     </div>
                 </div>
             </div>
@@ -153,100 +165,198 @@
     </section>
 
     <!-- Quiz Section -->
-    <section id="quiz" class="py-20 px-4">
-        <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 shadow-2xl">
-            <h2 class="text-3xl font-bold text-center mb-4 text-blue-700">The "[Friend's Name]" Quiz 🧠</h2>
-            <p class="text-center text-slate-500 mb-8">Score 10/10 to unlock the surprise gift!</p>
+    <section id="quiz" class="py-24 px-4">
+        <div class="max-w-2xl mx-auto">
+            <div class="glass-card rounded-[3rem] p-12 shadow-2xl border-2 border-white mb-10">
+                <h2 class="text-3xl font-bold text-center mb-4 text-rose-600">The "Shruti" Quiz 🧠</h2>
+                <p class="text-center text-slate-500 mb-10">Think you know her well? Score 10/10!</p>
+                
+                <div id="quiz-container">
+                    <!-- Quiz Start Screen -->
+                    <div id="quiz-intro" class="space-y-6 text-center">
+                        <div class="bg-rose-50 p-6 rounded-2xl border border-rose-100 inline-block mb-4">
+                            <span class="text-4xl">👑</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">Ready to take the challenge?</h3>
+                        <div class="max-w-xs mx-auto">
+                            <input type="text" id="quiz-player-name" placeholder="Enter your name" 
+                                class="w-full p-4 rounded-2xl border-2 border-slate-100 focus:outline-none focus:border-rose-400 focus:ring-4 focus:ring-rose-50 transition text-center font-bold">
+                        </div>
+                        <button onclick="beginQuiz()" class="px-10 py-4 bg-rose-500 text-white rounded-full font-bold hover:bg-rose-600 transition transform hover:scale-105 shadow-lg">Start Quiz 🚀</button>
+                    </div>
+
+                    <!-- Question View -->
+                    <div id="question-box" class="hidden space-y-8">
+                        <div class="flex justify-between items-center text-xs font-bold text-rose-400 uppercase tracking-widest">
+                            <span>Question <span id="q-num">1</span>/10</span>
+                            <div class="w-32 h-2 bg-rose-50 rounded-full overflow-hidden">
+                                <div id="progress-bar" class="h-full bg-rose-400 transition-all duration-300" style="width: 10%"></div>
+                            </div>
+                        </div>
+                        <h3 id="q-text" class="text-2xl font-bold text-slate-800 leading-tight">...</h3>
+                        <div id="options-box" class="grid grid-cols-1 gap-4"></div>
+                    </div>
+
+                    <!-- Results View -->
+                    <div id="result-box" class="hidden text-center space-y-8 py-10">
+                        <div class="text-7xl mb-4" id="result-emoji">🎉</div>
+                        <h3 class="text-3xl font-bold text-slate-800">Score: <span id="final-score">0</span>/10</h3>
+                        <p id="result-msg" class="text-slate-600 text-lg"></p>
+                        <div id="surprise-gift-quiz" class="hidden p-8 bg-rose-50 border-2 border-dashed border-rose-200 rounded-3xl animate-pulse">
+                            <h4 class="text-2xl font-bold text-rose-600 mb-2">✨ You are Shruti's bestie! ✨</h4>
+                        </div>
+                        <button onclick="resetQuiz()" class="px-10 py-4 bg-slate-800 text-white rounded-full font-bold hover:bg-slate-700 transition transform hover:scale-105 shadow-xl">Play Again</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Score Display -->
+            <div class="glass-card rounded-[2.5rem] p-8 shadow-xl border border-white/50">
+                <h4 class="text-center font-bold text-slate-400 uppercase tracking-widest text-xs mb-6">Recent Challengers</h4>
+                <div id="quiz-leaderboard" class="space-y-3 max-h-60 overflow-y-auto pr-2">
+                    <p class="text-center text-slate-400 italic py-4">Waiting for the first player...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Mystery Game Section -->
+    <section id="hunt" class="py-24 px-4 bg-slate-900 text-white">
+        <div class="max-w-3xl mx-auto glass-card rounded-[3rem] p-12 shadow-2xl border-2 border-slate-700 relative overflow-hidden bg-slate-800">
+            <div class="absolute -top-6 left-10 transform bg-indigo-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">HALL GAME 🔍</div>
+            <h2 class="text-4xl font-bold mb-6 text-indigo-400 handwritten">The Mystery Scavenger Hunt</h2>
+            <p class="text-slate-300 mb-10 text-lg">Hidden around this hall are 10 mystery items. Can you spot them? Type what you found in the slots below. Be the first to submit a complete list to win the <strong>Grand Surprise Prize!</strong> 🎁</p>
             
-            <div id="quiz-container">
-                <div id="question-box" class="space-y-6">
-                    <div class="text-sm font-bold text-slate-400 uppercase tracking-widest">Question <span id="q-num">1</span> of 10</div>
-                    <h3 id="q-text" class="text-xl font-bold text-slate-800">...</h3>
-                    <div id="options-box" class="grid grid-cols-1 gap-3"></div>
+            <div class="space-y-6 mb-10">
+                <label class="block text-sm font-bold text-indigo-300 uppercase tracking-widest">Enter Your Name to Start:</label>
+                <input type="text" id="hunter-name" placeholder="Full Name" class="w-full p-4 rounded-2xl bg-slate-700 border-2 border-slate-600 focus:outline-none focus:border-indigo-400 transition text-white">
+            </div>
+
+            <form id="hunt-form" action="https://formspree.io/f/siddhesh.khanvilkar09@gmail.com" method="POST" onsubmit="return handleHuntSubmit(event)">
+                <input type="hidden" name="Player Name" id="hidden-hunter-name">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <span class="text-xs text-slate-500 font-bold uppercase">Item #1</span>
+                        <input name="Item 1" required placeholder="Describe item 1..." class="w-full p-4 rounded-xl bg-black border border-slate-700 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs text-slate-500 font-bold uppercase">Item #2</span>
+                        <input name="Item 2" required placeholder="Describe item 2..." class="w-full p-4 rounded-xl bg-black border border-slate-700 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs text-slate-500 font-bold uppercase">Item #3</span>
+                        <input name="Item 3" required placeholder="Describe item 3..." class="w-full p-4 rounded-xl bg-black border border-slate-700 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs text-slate-500 font-bold uppercase">Item #4</span>
+                        <input name="Item 4" required placeholder="Describe item 4..." class="w-full p-4 rounded-xl bg-black border border-slate-700 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs text-slate-500 font-bold uppercase">Item #5</span>
+                        <input name="Item 5" required placeholder="Describe item 5..." class="w-full p-4 rounded-xl bg-black border border-slate-700 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs text-slate-500 font-bold uppercase">Item #6</span>
+                        <input name="Item 6" required placeholder="Describe item 6..." class="w-full p-4 rounded-xl bg-black border border-slate-700 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs text-slate-500 font-bold uppercase">Item #7</span>
+                        <input name="Item 7" required placeholder="Describe item 7..." class="w-full p-4 rounded-xl bg-black border border-slate-700 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs text-slate-500 font-bold uppercase">Item #8</span>
+                        <input name="Item 8" required placeholder="Describe item 8..." class="w-full p-4 rounded-xl bg-black border border-slate-700 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs text-slate-500 font-bold uppercase">Item #9</span>
+                        <input name="Item 9" required placeholder="Describe item 9..." class="w-full p-4 rounded-xl bg-black border border-slate-700 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs text-slate-500 font-bold uppercase">Item #10</span>
+                        <input name="Item 10" required placeholder="Describe item 10..." class="w-full p-4 rounded-xl bg-black border border-slate-700 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+                    </div>
                 </div>
 
-                <div id="result-box" class="hidden text-center space-y-6">
-                    <div class="text-6xl" id="result-emoji">🎉</div>
-                    <h3 class="text-2xl font-bold">You scored <span id="final-score">0</span>/10!</h3>
-                    <p id="result-msg" class="text-slate-600"></p>
-                    <div id="surprise-gift" class="hidden p-6 bg-yellow-100 border-2 border-dashed border-yellow-400 rounded-xl">
-                        <h4 class="text-xl font-bold text-yellow-700 mb-2">🎁 SURPRISE! 🎁</h4>
-                        <p class="text-yellow-800">You really know your friend! Your gift is: <br><strong>[Insert Gift Here]</strong></p>
-                    </div>
-                    <button onclick="startQuiz()" class="px-6 py-2 bg-slate-200 rounded-full font-bold hover:bg-slate-300 transition">Try Again</button>
+                <div class="mt-12">
+                    <button type="submit" class="w-full py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-xl transition-all transform active:scale-95">
+                        Submit Findings 🚀
+                    </button>
+                    <p class="text-center text-slate-500 text-xs mt-4">Submitting will send your list directly to Siddhesh's email.</p>
+                </div>
+            </form>
+
+            <div id="hunt-success" class="hidden mt-10 text-center animate-fade-in">
+                <div class="bg-green-900/30 p-8 rounded-[2rem] border-2 border-green-500/50">
+                    <h3 class="text-2xl font-bold text-green-400 mb-2">LIST SUBMITTED! 🎉</h3>
+                    <p class="text-slate-300">Wait for the host to verify your findings. Good luck!</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Guestbook Section -->
-    <section id="messages" class="py-20 bg-white/40">
-        <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-slate-800">Birthday Wishes ✍️</h2>
-            
-            <!-- Message Form -->
-            <div class="glass-card p-6 rounded-2xl mb-12 shadow-lg">
-                <h3 class="text-xl font-bold mb-4">Leave a message</h3>
-                <div class="space-y-4">
-                    <input type="text" id="guest-name" placeholder="Your Name" class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-400">
-                    <textarea id="guest-msg" placeholder="Write something sweet..." rows="3" class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
-                    <button id="send-btn" onclick="addMessage()" class="w-full py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-xl transition flex justify-center items-center">
-                        <span id="btn-text">Send Wish 💌</span>
+    <section id="messages" class="py-24 bg-white/30">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-slate-800 handwritten">Wishes for Shruti 💌</h2>
+            <div class="glass-card p-10 rounded-[2.5rem] mb-16 shadow-2xl">
+                <h3 class="text-xl font-bold mb-6 text-slate-700">Leave your birthday note</h3>
+                <div class="space-y-6">
+                    <input type="text" id="guest-name" placeholder="Your Name" class="w-full p-4 rounded-2xl border-2 border-slate-100 focus:outline-none focus:border-rose-400 focus:ring-4 focus:ring-rose-50 transition">
+                    <textarea id="guest-msg" placeholder="Tell Shruti how amazing she is..." rows="3" class="w-full p-4 rounded-2xl border-2 border-slate-100 focus:outline-none focus:border-rose-400 focus:ring-4 focus:ring-rose-50 transition"></textarea>
+                    <button id="send-btn" onclick="addMessage()" class="w-full py-4 bg-gradient-to-r from-rose-500 to-purple-600 hover:opacity-90 text-white font-bold rounded-2xl transition-all shadow-lg flex justify-center items-center transform active:scale-95">
+                        <span id="btn-text">Post My Wish ✨</span>
                     </button>
                 </div>
             </div>
-
-            <!-- Message List -->
-            <div id="message-list" class="space-y-6">
-                <div class="text-center py-10 text-slate-400">Loading wishes...</div>
+            <div id="message-list" class="space-y-8">
+                <div class="text-center py-10 text-slate-400 italic">Gathering all the love...</div>
             </div>
         </div>
     </section>
 
-    <!-- Poster QR Section -->
-    <section id="poster" class="py-20 px-4">
-        <div class="max-w-xl mx-auto glass-card rounded-3xl p-8 shadow-xl text-center">
-            <h2 class="text-3xl font-bold mb-4 text-slate-800">Poster Tool 🎞️</h2>
-            <p class="text-slate-600 mb-8 text-sm">Once you host this page (e.g. on GitHub Pages), paste the URL below to generate your QR code for the poster!</p>
-            
-            <div class="flex flex-col items-center space-y-6">
-                <input type="text" id="url-input" placeholder="https://your-birthday-site.com" 
-                    class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    oninput="generateQR()">
-                
-                <div id="qr-display" class="bg-white p-4 rounded-xl shadow-inner min-h-[200px] flex items-center justify-center">
-                    <p class="text-slate-300 italic">Enter a URL to see the QR code</p>
-                </div>
-
-                <div class="text-xs text-slate-400">
-                    Tip: Right-click the QR code and select "Save image as..." to download it for printing.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Follow the Star Section -->
-    <section id="follow" class="py-20 px-4 text-center">
-        <div class="max-w-xl mx-auto glass-card rounded-[3rem] p-10 shadow-2xl border-2 border-white">
-            <h2 class="text-3xl font-bold mb-6 text-slate-800">Follow the Star 🌟</h2>
-            <p class="text-slate-600 mb-8">Stay updated with [Friend's Name]'s latest adventures!</p>
-            
-            <a href="https://instagram.com/[your_friend_username]" target="_blank" class="ig-gradient inline-flex items-center px-8 py-4 rounded-full text-white font-bold text-lg shadow-xl hover:scale-105 transition transform">
-                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                Follow on Instagram
+    <!-- Follow Section -->
+    <section id="follow" class="py-24 px-4 text-center">
+        <div class="max-w-2xl mx-auto glass-card rounded-[3.5rem] p-16 shadow-2xl border-4 border-white/50 relative">
+            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-rose-500 text-white px-6 py-1 rounded-full text-sm font-bold shadow-lg">STAR ALERT 🌟</div>
+            <h2 class="text-4xl font-bold mb-6 text-slate-800 handwritten">Follow the Star</h2>
+            <p class="text-slate-600 mb-10 text-lg">Stay updated with Shruti's latest adventures!</p>
+            <a href="https://www.instagram.com/shruti_babar9" target="_blank" class="ig-gradient inline-flex items-center px-12 py-5 rounded-full text-white font-extrabold text-xl shadow-[0_20px_50px_rgba(214,36,159,0.3)] hover:scale-105 transition transform active:scale-95">
+                <svg class="w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                Follow @shruti_babar9
             </a>
         </div>
     </section>
 
-    <!-- Final Wishes -->
-    <footer class="py-20 px-4 text-center">
-        <div class="max-w-2xl mx-auto bg-gradient-to-r from-pink-500 to-purple-600 p-12 rounded-[3rem] shadow-2xl text-white">
-            <h2 class="handwritten text-4xl mb-6">Best Wishes Always</h2>
-            <p class="text-lg opacity-90 leading-relaxed">
-                May your year be filled with laughter, success, and endless adventures. Thank you for being such an incredible friend!
-            </p>
-        </div>
+    <footer class="py-12 text-center text-slate-400 text-xs uppercase tracking-widest bg-slate-950">
+        Made with ❤️ for Shruti
     </footer>
+
+    <!-- Host Results Section (HIDDEN BY DEFAULT) -->
+    <section id="host-results-section" class="py-20 px-4 bg-slate-950 text-white border-t border-slate-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-8 text-slate-500">Host Dashboard</h2>
+            
+            <!-- Auth Lock -->
+            <div id="host-auth" class="space-y-4">
+                <p class="text-sm text-slate-600">Enter Host PIN to see Scavenger Hunt responses</p>
+                <div class="flex justify-center space-x-2">
+                    <input type="password" id="host-pin" placeholder="PIN" class="w-32 p-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-center font-bold">
+                    <button onclick="unlockHostView()" class="p-3 bg-slate-800 rounded-xl hover:bg-slate-700 transition">Unlock</button>
+                </div>
+            </div>
+
+            <!-- Private Submissions List -->
+            <div id="host-view" class="hidden space-y-6 text-left">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-indigo-400">Scavenger Hunt Submissions</h3>
+                    <button onclick="lockHostView()" class="text-xs text-slate-500 underline">Lock View</button>
+                </div>
+                <div id="hunt-submissions-list" class="grid grid-cols-1 gap-6">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Firebase SDKs -->
     <script type="module">
@@ -254,16 +364,15 @@
         import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase Configuration
         const firebaseConfig = JSON.parse(__firebase_config);
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'birthday-app-id';
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'shruti-bday-2024';
 
         let user = null;
+        let quizPlayerName = "";
 
-        // Initialize Authentication
         const initAuth = async () => {
             if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                 await signInWithCustomToken(auth, __initial_auth_token);
@@ -276,128 +385,176 @@
             user = u;
             if (user) {
                 setupGuestbook();
+                setupQuizLeaderboard();
+                setupHostHuntListener();
             }
         });
 
         initAuth();
 
-        // --- Guestbook Logic with Firebase ---
+        // --- Guestbook Logic ---
         function setupGuestbook() {
             const messagesRef = collection(db, 'artifacts', appId, 'public', 'data', 'messages');
-            
             onSnapshot(messagesRef, (snapshot) => {
                 const list = document.getElementById('message-list');
                 list.innerHTML = '';
-                
-                const docs = snapshot.docs.sort((a, b) => {
-                    const timeA = a.data().timestamp?.toMillis() || 0;
-                    const timeB = b.data().timestamp?.toMillis() || 0;
-                    return timeB - timeA;
+                const docs = snapshot.docs.sort((a, b) => (b.data().timestamp?.toMillis() || 0) - (a.data().timestamp?.toMillis() || 0));
+                if (docs.length === 0) { list.innerHTML = '<div class="text-center py-10 text-slate-400">No wishes yet. Be the first! ✨</div>'; return; }
+                docs.forEach(doc => {
+                    const data = doc.data();
+                    const card = document.createElement('div');
+                    card.className = "bg-white p-8 rounded-[2rem] shadow-xl border-l-8 border-rose-400 animate-fade-in";
+                    card.innerHTML = `<p class="text-slate-700 text-lg italic mb-3">"${escapeHtml(data.message)}"</p><p class="text-sm font-bold text-rose-500 uppercase tracking-widest">— ${escapeHtml(data.name)}</p>`;
+                    list.appendChild(card);
                 });
+            });
+        }
 
+        // --- Quiz Leaderboard Logic ---
+        function setupQuizLeaderboard() {
+            const quizResultsRef = collection(db, 'artifacts', appId, 'public', 'data', 'quiz_results');
+            onSnapshot(quizResultsRef, (snapshot) => {
+                const leaderboard = document.getElementById('quiz-leaderboard');
+                leaderboard.innerHTML = '';
+                const results = snapshot.docs.map(doc => doc.data())
+                    .sort((a, b) => (b.timestamp?.toMillis() || 0) - (a.timestamp?.toMillis() || 0))
+                    .slice(0, 10);
+                if (results.length === 0) {
+                    leaderboard.innerHTML = '<p class="text-center text-slate-400 italic py-4">Waiting for the first player...</p>';
+                    return;
+                }
+                results.forEach(res => {
+                    const item = document.createElement('div');
+                    const isPerfect = res.score === 10;
+                    item.className = `flex justify-between items-center p-3 rounded-xl border ${isPerfect ? 'bg-rose-50 border-rose-200' : 'bg-slate-50 border-slate-100'}`;
+                    item.innerHTML = `
+                        <div class="flex items-center space-x-3">
+                            <span class="text-lg">${isPerfect ? '🏆' : '👤'}</span>
+                            <span class="font-bold text-slate-700">${escapeHtml(res.playerName)}</span>
+                        </div>
+                        <span class="font-mono font-bold ${isPerfect ? 'text-rose-600' : 'text-slate-400'}">${res.score}/10</span>
+                    `;
+                    leaderboard.appendChild(item);
+                });
+            });
+        }
+
+        // --- Host Hunt Dashboard Listener ---
+        function setupHostHuntListener() {
+            const huntRef = collection(db, 'artifacts', appId, 'public', 'data', 'hunt_entries');
+            onSnapshot(huntRef, (snapshot) => {
+                const hostList = document.getElementById('hunt-submissions-list');
+                hostList.innerHTML = '';
+                
+                const docs = snapshot.docs.sort((a, b) => (b.data().timestamp?.toMillis() || 0) - (a.data().timestamp?.toMillis() || 0));
+                
                 if (docs.length === 0) {
-                    list.innerHTML = '<div class="text-center py-10 text-slate-400">No wishes yet. Be the first! ✨</div>';
+                    hostList.innerHTML = '<p class="text-slate-600 italic">No hunt entries yet.</p>';
                     return;
                 }
 
                 docs.forEach(doc => {
                     const data = doc.data();
                     const card = document.createElement('div');
-                    card.className = "bg-white p-6 rounded-2xl shadow-md border-l-4 border-pink-400 animate-fade-in";
+                    card.className = "bg-slate-900 p-6 rounded-2xl border border-slate-700 space-y-4";
+                    
+                    let itemsHtml = '<div class="grid grid-cols-2 gap-2 text-xs text-slate-400">';
+                    for (let i = 1; i <= 10; i++) {
+                        itemsHtml += `<div class="bg-slate-800 p-2 rounded">#${i}: ${escapeHtml(data['Item ' + i] || '---')}</div>`;
+                    }
+                    itemsHtml += '</div>';
+
                     card.innerHTML = `
-                        <p class="text-slate-700 italic mb-2">"${escapeHtml(data.message)}"</p>
-                        <p class="text-sm font-bold text-pink-600">— ${escapeHtml(data.name)}</p>
+                        <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <span class="font-bold text-indigo-400 underline">${escapeHtml(data.hunter || 'Anonymous')}</span>
+                            <span class="text-xs text-slate-600">${data.timestamp ? new Date(data.timestamp.toMillis()).toLocaleTimeString() : ''}</span>
+                        </div>
+                        ${itemsHtml}
                     `;
-                    list.appendChild(card);
+                    hostList.appendChild(card);
                 });
-            }, (error) => {
-                console.error("Firestore Error:", error);
             });
         }
+
+        window.unlockHostView = () => {
+            const pin = document.getElementById('host-pin').value;
+            if (pin === "0909") {
+                document.getElementById('host-auth').classList.add('hidden');
+                document.getElementById('host-view').classList.remove('hidden');
+            } else {
+                alert("Incorrect PIN");
+            }
+        };
+
+        window.lockHostView = () => {
+            document.getElementById('host-auth').classList.remove('hidden');
+            document.getElementById('host-view').classList.add('hidden');
+            document.getElementById('host-pin').value = '';
+        };
 
         window.addMessage = async () => {
             if (!user) return;
             const name = document.getElementById('guest-name').value.trim();
             const msg = document.getElementById('guest-msg').value.trim();
-            const btn = document.getElementById('send-btn');
-            const btnText = document.getElementById('btn-text');
-            if (!name || !msg) { alert("Please fill in both name and message!"); return; }
-
+            if (!name || !msg) { alert("Please fill in both fields!"); return; }
             try {
-                btn.disabled = true;
-                btnText.innerText = "Sending...";
                 const messagesRef = collection(db, 'artifacts', appId, 'public', 'data', 'messages');
-                await addDoc(messagesRef, { name, message: msg, timestamp: serverTimestamp(), uid: user.uid });
+                await addDoc(messagesRef, { name: name, message: msg, timestamp: serverTimestamp(), uid: user.uid });
                 document.getElementById('guest-name').value = '';
                 document.getElementById('guest-msg').value = '';
-                confetti({ particleCount: 30, spread: 50, origin: { y: 0.9 } });
-            } catch (e) {
-                console.error("Error adding document: ", e);
-            } finally {
-                btn.disabled = false;
-                btnText.innerText = "Send Wish 💌";
+                confetti({ particleCount: 50, spread: 60, origin: { y: 0.9 } });
+            } catch (e) { console.error(e); }
+        };
+
+        window.handleHuntSubmit = async (event) => {
+            const name = document.getElementById('hunter-name').value.trim();
+            if (!name) { alert("Please enter your name!"); return false; }
+            document.getElementById('hidden-hunter-name').value = name;
+            if (user) {
+                const huntRef = collection(db, 'artifacts', appId, 'public', 'data', 'hunt_entries');
+                const formData = new FormData(document.getElementById('hunt-form'));
+                const entry = { hunter: name, timestamp: serverTimestamp() };
+                formData.forEach((value, key) => { entry[key] = value; });
+                try {
+                    await addDoc(huntRef, entry);
+                    document.getElementById('hunt-form').classList.add('hidden');
+                    document.getElementById('hunt-success').classList.remove('hidden');
+                    confetti({ particleCount: 150, spread: 70, origin: { y: 0.8 } });
+                } catch (e) { console.error(e); }
             }
+            return true;
         };
 
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
+        function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text; return div.innerHTML; }
 
-        // --- Poster QR Generator Logic ---
-        window.generateQR = () => {
-            const url = document.getElementById('url-input').value.trim();
-            const display = document.getElementById('qr-display');
-            if (url) {
-                const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(url)}`;
-                display.innerHTML = `<img src="${qrUrl}" alt="QR Code" class="rounded-lg shadow-md animate-fade-in">`;
-            } else {
-                display.innerHTML = `<p class="text-slate-300 italic">Enter a URL to see the QR code</p>`;
-            }
-        };
-
-        // --- Cake & Quiz Logic ---
-        let candlesBlown = 0;
-        window.blowCandle = (id) => {
-            const flame = document.getElementById(`flame-${id}`);
-            if (!flame.classList.contains('blown-out')) {
-                flame.classList.add('blown-out');
-                candlesBlown++;
-                if (candlesBlown === 3) {
-                    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-                    document.getElementById('wish-message').classList.remove('hidden');
-                }
-            }
-        };
-
-        window.resetCandles = () => {
-            candlesBlown = 0;
-            for (let i = 1; i <= 3; i++) document.getElementById(`flame-${i}`).classList.remove('blown-out');
-            document.getElementById('wish-message').classList.add('hidden');
-        };
-
+        // --- Quiz Application Logic ---
         const quizData = [
-            { q: "What is their favorite color?", o: ["Blue", "Red", "Pink", "Green"], a: 2 },
-            { q: "What is their go-to snack?", o: ["Chips", "Chocolate", "Fruit", "Pizza"], a: 0 },
-            { q: "What's their favorite season?", o: ["Summer", "Winter", "Spring", "Autumn"], a: 0 },
-            { q: "Coffee or Tea?", o: ["Coffee", "Tea", "Both", "Neither"], a: 1 },
-            { q: "What is their dream travel destination?", o: ["Paris", "Tokyo", "New York", "Bali"], a: 1 },
-            { q: "Are they a night owl or early bird?", o: ["Night Owl", "Early Bird", "Both", "Just Tired"], a: 0 },
-            { q: "What's their favorite movie genre?", o: ["Horror", "Comedy", "Sci-Fi", "Romance"], a: 1 },
-            { q: "Which pet do they prefer?", o: ["Dogs", "Cats", "Birds", "Capybaras"], a: 0 },
-            { q: "What is their hidden talent?", o: ["Singing", "Cooking", "Gaming", "Sleeping"], a: 3 },
-            { q: "Last one: How awesome are they?", o: ["Very", "Extremely", "Superb", "All of the above"], a: 3 }
+            { q: "What is Shruti's absolute favorite color?", o: ["Blue", "Red", "Pink", "Green"], a: 2 },
+            { q: "Which fruit does Shruti love the most?", o: ["Mango", "Apple", "Watermelon", "Grapes"], a: 2 },
+            { q: "Where did Shruti complete her Master's degree?", o: ["Trine University", "Boston University", "Northeastern University", "NYU"], a: 2 },
+            { q: "Which city was Shruti born in?", o: ["Pune", "Mumbai", "Delhi", "Bangalore"], a: 1 },
+            { q: "Who is Shruti's favorite Bollywood celebrity?", o: ["Ranbir Kapoor", "Ranveer Singh", "Shah Rukh Khan", "Varun Dhawan"], a: 1 },
+            { q: "Which is Shruti's favorite cuisine?", o: ["Italian", "Chinese", "Mexican", "Indian"], a: 3 },
+            { q: "Is Shruti a morning bird or a night owl?", o: ["Early Bird", "Night Owl", "Always Napping", "Just Tired"], a: 1 },
+            { q: "What is Shruti's favorite season?", o: ["Summer", "Monsoon", "Winter", "Spring"], a: 2 },
+            { q: "What type of pet does Shruti want?", o: ["Dog", "Cat", "Hamster", "Rabbit"], a: 1 },
+            { q: "Who is Shruti's favorite person in the whole world?", o: ["Siddhesh", "Siddhesh", "Siddhesh", "Siddhesh"], a: 0 }
         ];
 
         let currentQuestion = 0;
         let score = 0;
-        window.startQuiz = () => {
-            currentQuestion = 0;
-            score = 0;
+
+        window.beginQuiz = () => {
+            const name = document.getElementById('quiz-player-name').value.trim();
+            if (!name) { alert("Please enter your name first!"); return; }
+            quizPlayerName = name;
+            document.getElementById('quiz-intro').classList.add('hidden');
             document.getElementById('question-box').classList.remove('hidden');
-            document.getElementById('result-box').classList.add('hidden');
-            document.getElementById('surprise-gift').classList.add('hidden');
+            startQuiz();
+        };
+
+        window.startQuiz = () => {
+            currentQuestion = 0; score = 0;
             showQuestion();
         };
 
@@ -405,11 +562,12 @@
             const q = quizData[currentQuestion];
             document.getElementById('q-num').innerText = currentQuestion + 1;
             document.getElementById('q-text').innerText = q.q;
+            document.getElementById('progress-bar').style.width = ((currentQuestion + 1) * 10) + "%";
             const optionsBox = document.getElementById('options-box');
             optionsBox.innerHTML = '';
             q.o.forEach((opt, idx) => {
                 const btn = document.createElement('button');
-                btn.className = "w-full text-left p-4 rounded-xl border-2 border-slate-100 hover:border-pink-300 hover:bg-pink-50 transition font-medium text-slate-700";
+                btn.className = "w-full text-left p-5 rounded-2xl border-2 border-slate-50 hover:border-rose-300 hover:bg-rose-50 transition font-bold text-slate-700 shadow-sm";
                 btn.innerText = opt;
                 btn.onclick = () => handleAnswer(idx);
                 optionsBox.appendChild(btn);
@@ -417,22 +575,57 @@
         };
 
         const handleAnswer = (idx) => {
-            if (idx === quizData[currentQuestion].a) score++;
+            if (currentQuestion === 9 || idx === quizData[currentQuestion].a) score++;
             currentQuestion++;
-            if (currentQuestion < quizData.length) showQuestion(); else showResults();
+            if (currentQuestion < quizData.length) showQuestion(); 
+            else finishQuiz();
         };
 
-        const showResults = () => {
+        const finishQuiz = async () => {
             document.getElementById('question-box').classList.add('hidden');
             document.getElementById('result-box').classList.remove('hidden');
             document.getElementById('final-score').innerText = score;
+            const msgEl = document.getElementById('result-msg');
+            const giftEl = document.getElementById('surprise-gift-quiz');
+            const emojiEl = document.getElementById('result-emoji');
             if (score === 10) {
-                document.getElementById('surprise-gift').classList.remove('hidden');
-                confetti({ particleCount: 100, spread: 70, origin: { y: 0.8 } });
+                emojiEl.innerText = "🎉"; msgEl.innerText = ""; giftEl.classList.remove('hidden');
+                confetti({ particleCount: 150, spread: 100 });
+            } else {
+                emojiEl.innerText = "😅"; msgEl.innerText = "You need to spend more time with her"; giftEl.classList.add('hidden');
+            }
+            if (user && quizPlayerName) {
+                try {
+                    const quizResultsRef = collection(db, 'artifacts', appId, 'public', 'data', 'quiz_results');
+                    await addDoc(quizResultsRef, { playerName: quizPlayerName, score: score, timestamp: serverTimestamp() });
+                } catch (e) { console.error(e); }
             }
         };
 
-        window.startQuiz();
+        window.resetQuiz = () => {
+            document.getElementById('result-box').classList.add('hidden');
+            document.getElementById('quiz-intro').classList.remove('hidden');
+            document.getElementById('quiz-player-name').value = "";
+        };
+
+        // --- Cake Functions ---
+        let candlesBlown = 0;
+        window.blowCandle = (id) => {
+            const flame = document.getElementById(`flame-${id}`);
+            if (!flame.classList.contains('blown-out')) {
+                flame.classList.add('blown-out');
+                candlesBlown++;
+                if (candlesBlown === 3) {
+                    confetti({ particleCount: 200, spread: 80, origin: { y: 0.6 } });
+                    document.getElementById('wish-message').classList.remove('hidden');
+                }
+            }
+        };
+        window.resetCandles = () => {
+            candlesBlown = 0;
+            for (let i = 1; i <= 3; i++) document.getElementById(`flame-${i}`).classList.remove('blown-out');
+            document.getElementById('wish-message').classList.add('hidden');
+        };
     </script>
 </body>
 </html>
