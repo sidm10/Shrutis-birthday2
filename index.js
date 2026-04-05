@@ -1,41 +1,62 @@
 // ============================================================
-// DATA LAYER — client-side storage (swap to API calls later)
+// DATA LAYER — API calls to backend
 // ============================================================
 
+const API_BASE = 'https://shruti-birthday-backend.onrender.com/api'; // replace with your Render URL
+
 const DataStore = {
-    _get(key) {
-        try { return JSON.parse(localStorage.getItem(key)) || []; }
-        catch { return []; }
+    // Leaderboard
+    async getLeaderboard() {
+        try {
+            const res = await fetch(`${API_BASE}/leaderboard`);
+            return await res.json();
+        } catch { return []; }
     },
-    _save(key, data) {
-        localStorage.setItem(key, JSON.stringify(data));
-    },
-
-    // Quiz leaderboard
-    getLeaderboard() { return this._get('shruti_leaderboard'); },
-    addLeaderboardEntry(name, score) {
-        const lb = this._get('shruti_leaderboard');
-        lb.push({ playerName: name, score, timestamp: Date.now() });
-        this._save('shruti_leaderboard', lb);
-        return lb;
-    },
-
-    // Birthday wishes
-    getWishes() { return this._get('shruti_wishes'); },
-    addWish(name, message) {
-        const wishes = this._get('shruti_wishes');
-        wishes.push({ name, message, timestamp: Date.now() });
-        this._save('shruti_wishes', wishes);
-        return wishes;
+    async addLeaderboardEntry(playerName, score) {
+        try {
+            await fetch(`${API_BASE}/leaderboard`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ playerName, score })
+            });
+        } catch (err) { console.error('Failed to save score:', err); }
     },
 
-    // Scavenger hunt
-    getHuntEntries() { return this._get('shruti_hunt'); },
-    addHuntEntry(hunterName, items) {
-        const entries = this._get('shruti_hunt');
-        entries.push({ hunter: hunterName, items, timestamp: Date.now() });
-        this._save('shruti_hunt', entries);
-        return entries;
+    // Wishes
+    async getWishes() {
+        try {
+            const res = await fetch(`${API_BASE}/wishes`);
+            return await res.json();
+        } catch { return []; }
+    },
+    async addWish(name, message) {
+        try {
+            await fetch(`${API_BASE}/wishes`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, message })
+            });
+        } catch (err) { console.error('Failed to save wish:', err); }
+    },
+
+    // Hunt
+    async addHuntEntry(hunter, items) {
+        try {
+            await fetch(`${API_BASE}/hunt`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ hunter, items })
+            });
+        } catch (err) { console.error('Failed to save hunt entry:', err); }
+    },
+    async getHuntEntries(pin) {
+        try {
+            const res = await fetch(`${API_BASE}/hunt`, {
+                headers: { 'x-host-pin': pin }
+            });
+            if (!res.ok) return null;
+            return await res.json();
+        } catch { return null; }
     }
 };
 
@@ -146,8 +167,8 @@ galleryCarousel.render();
 // WISHES CAROUSEL
 // ============================================================
 
-function renderWishesCarousel() {
-    const wishes = DataStore.getWishes();
+async function renderWishesCarousel() {
+    const wishes = await DataStore.getWishes();
     const track = document.getElementById('wishes-track');
     const dots = document.getElementById('wishes-dots');
     const prevBtn = document.getElementById('wishes-prev');
@@ -175,11 +196,11 @@ function renderWishesCarousel() {
                         </div>
                     </div>`;
             },
-            [...wishes].reverse()
+            [...wishes]
         );
         window._wishesCarousel.render();
     } else {
-        window._wishesCarousel.refresh([...wishes].reverse());
+        window._wishesCarousel.refresh([...wishes]);
     }
 }
 
@@ -270,7 +291,7 @@ function handleAnswer(selected) {
     }, 600);
 }
 
-function showResult() {
+async function showResult() {
     document.getElementById('question-box').classList.add('hidden');
     document.getElementById('result-box').classList.remove('hidden');
     document.getElementById('final-score').innerText = curScore;
@@ -290,15 +311,13 @@ function showResult() {
         gift.classList.add('hidden');
     }
 
-    DataStore.addLeaderboardEntry(currentPlayer, curScore);
-    renderLeaderboard();
+    await DataStore.addLeaderboardEntry(currentPlayer, curScore);
+    await renderLeaderboard();
 }
 
-function renderLeaderboard() {
+async function renderLeaderboard() {
     const lb = document.getElementById('quiz-leaderboard');
-    const results = DataStore.getLeaderboard()
-        .sort((a, b) => b.score - a.score || a.timestamp - b.timestamp)
-        .slice(0, 20);
+    const results = await DataStore.getLeaderboard();
 
     if (results.length === 0) {
         lb.innerHTML = '<p class="text-center text-slate-400 italic">No results yet. Be the first!</p>';
@@ -351,7 +370,7 @@ for (let i = 1; i <= 10; i++) {
         </div>`;
 }
 
-document.getElementById('hunt-form').addEventListener('submit', (e) => {
+document.getElementById('hunt-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const hunterName = document.getElementById('hunter-name').value.trim();
     if (!hunterName) { alert('Enter your name!'); return; }
@@ -361,7 +380,7 @@ document.getElementById('hunt-form').addEventListener('submit', (e) => {
         items[`Item ${i}`] = document.getElementById(`hunt-q-${i}`).value.trim();
     }
 
-    DataStore.addHuntEntry(hunterName, items);
+    await DataStore.addHuntEntry(hunterName, items);
     document.getElementById('hunt-form-container').classList.add('hidden');
     document.getElementById('hunt-success').classList.remove('hidden');
     confetti({ particleCount: 100 });
@@ -383,15 +402,15 @@ document.getElementById('hunt-again-btn').addEventListener('click', () => {
 // BIRTHDAY WISHES
 // ============================================================
 
-document.getElementById('post-wish-btn').addEventListener('click', () => {
+document.getElementById('post-wish-btn').addEventListener('click', async () => {
     const name = document.getElementById('guest-name').value.trim();
     const msg = document.getElementById('guest-msg').value.trim();
     if (!name || !msg) { alert('Please fill in both fields!'); return; }
 
-    DataStore.addWish(name, msg);
+    await DataStore.addWish(name, msg);
     document.getElementById('guest-name').value = '';
     document.getElementById('guest-msg').value = '';
-    renderWishesCarousel();
+    await renderWishesCarousel();
 });
 
 
@@ -399,17 +418,27 @@ document.getElementById('post-wish-btn').addEventListener('click', () => {
 // HOST DASHBOARD
 // ============================================================
 
-function renderHuntSubmissions() {
-    const list = document.getElementById('hunt-submissions-list');
-    const entries = DataStore.getHuntEntries().sort((a, b) => b.timestamp - a.timestamp);
+document.getElementById('unlock-btn').addEventListener('click', async () => {
+    const pin = document.getElementById('host-pin').value;
+    const entries = await DataStore.getHuntEntries(pin);
 
+    if (entries === null) {
+        alert('Incorrect PIN');
+        return;
+    }
+
+    document.getElementById('host-auth').classList.add('hidden');
+    document.getElementById('host-view').classList.remove('hidden');
+
+    const list = document.getElementById('hunt-submissions-list');
     if (entries.length === 0) {
         list.innerHTML = '<p class="text-slate-500 italic col-span-2 text-center">No submissions yet.</p>';
         return;
     }
 
     list.innerHTML = entries.map(entry => {
-        const itemsHtml = Object.entries(entry.items)
+        const items = entry.items instanceof Object ? entry.items : {};
+        const itemsHtml = Object.entries(items)
             .map(([key, val]) => `<div class="bg-slate-800 p-2 rounded">${key}: ${val || '---'}</div>`)
             .join('');
         return `<div class="bg-slate-900 p-6 rounded-3xl border border-slate-700 shadow-xl">
@@ -417,16 +446,6 @@ function renderHuntSubmissions() {
             <div class="grid grid-cols-1 gap-1 text-sm text-slate-400 mt-4 border-t border-slate-800 pt-4">${itemsHtml}</div>
         </div>`;
     }).join('');
-}
-
-document.getElementById('unlock-btn').addEventListener('click', () => {
-    if (document.getElementById('host-pin').value === '0909') {
-        document.getElementById('host-auth').classList.add('hidden');
-        document.getElementById('host-view').classList.remove('hidden');
-        renderHuntSubmissions();
-    } else {
-        alert('Incorrect PIN');
-    }
 });
 
 document.getElementById('lock-btn').addEventListener('click', () => {
