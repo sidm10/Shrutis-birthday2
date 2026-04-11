@@ -66,10 +66,25 @@ const DataStore = {
 // ============================================================
 
 const galleryImages = [
-    'https://images.unsplash.com/photo-1513151233558-d860c53bd81d?auto=format&fit=crop&q=80&w=600',
-    'https://images.unsplash.com/photo-1496440737103-cd596325d314?auto=format&fit=crop&q=80&w=600',
-    'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=600'
+    './images/image1.jpeg',
+    './images/image2.jpeg',
+    './images/image3.jpeg',
+    './images/image4.jpeg',
+    './images/image5.jpeg',
+    './images/image6.jpeg',
+    './images/image7.jpeg',
+    './images/image8.jpeg',
 ];
+
+// Shuffle gallery images
+function shuffleArray(arr) {
+    const shuffled = [...arr];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
 
 // Group images into pairs
 function chunkArray(arr, size) {
@@ -80,7 +95,7 @@ function chunkArray(arr, size) {
     return chunks;
 }
 
-const gallerySlides = chunkArray(galleryImages, 2);
+const gallerySlides = chunkArray(shuffleArray(galleryImages), 2);
 
 function createCarousel(trackEl, dotsEl, prevBtn, nextBtn, renderSlide, items) {
     let current = 0;
